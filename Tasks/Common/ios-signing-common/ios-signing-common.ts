@@ -473,7 +473,7 @@ export async function unlockKeychain(keychainPath: string, keychainPwd: string):
  * @param uuid
  */
 export async function deleteProvisioningProfile(uuid: string): Promise<void> {
-    if (uuid) {
+    if (uuid && uuid.trim()) {
         const provProfiles: string[] = tl.findMatch(getUserProvisioningProfilesPath(), uuid.trim() + '*');
         if (provProfiles) {
             provProfiles.forEach(async (provProfilePath) => {
