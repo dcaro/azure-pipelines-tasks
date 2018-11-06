@@ -23,7 +23,7 @@ async function run() {
 
             if (tl.filePathSupplied('provProfileSourceRepository') && tl.exist(provProfilePath) && tl.stats(provProfilePath).isFile()) {
                 const info = await sign.installProvisioningProfile(provProfilePath);
-                if (info.provProfileUUID) {
+                if (info && info.provProfileUUID) {
                     tl.setTaskVariable('APPLE_PROV_PROFILE_UUID', info.provProfileUUID.trim());
 
                     // set the provisioning profile output variable.
@@ -33,7 +33,7 @@ async function run() {
                     tl.setVariable('APPLE_PROV_PROFILE_UUID', info.provProfileUUID.trim());
                 }
 
-                if (info.provProfileName) {
+                if (info && info.provProfileName) {
                     tl.setVariable('provisioningProfileName', info.provProfileName.trim());
                 }
 
